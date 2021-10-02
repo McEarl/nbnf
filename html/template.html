@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>$title$</title>
+    <style>
+      .NBNF_nonterm_rule {
+        font-family: monospace;
+        background-color: #444444;
+        color: White;
+        border: solid 1px;
+        border-color: #444444;
+        padding: 10px;
+        margin-bottom: 20px;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+      .NBNF_nonterm_rule a:hover{
+        font-weight: bold;
+      }
+      .NBNF_nonterm_rule td {
+        padding-right: 5px;
+        padding-left: 5px;
+        border: none;
+      }
+      .NBNF_alphabet_rule {
+        font-family: monospace;
+        background-color: #444444;
+        color: White;
+        border: solid 1px;
+        border-color: #444444;
+        padding: 10px;
+        margin-bottom: 20px;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+      .NBNF_alphabet_rule td {
+        padding-right: 5px;
+        padding-left: 5px;
+        border: none;
+      }
+      .NBNF_nonterm_rule_lhs {
+        color: #6699FF;
+      }
+      .NBNF_alphabet_rule_lhs {
+        color: #6699FF;
+      }
+      .NBNF_alphabet {
+        color: LightSeaGreen;
+      }
+      .NBNF_alphabet a {
+        color: LightSeaGreen;
+      }
+      .NBNF_non_terminal a {
+        color: #CC66FF;
+      }
+      .NBNF_case_sensitive_string {
+        color: LightGreen;
+      }
+      .NBNF_case_insensitive_string {
+        color: LightGreen;
+      }
+      .NBNF_case_sensitive_char {
+        color: LightGreen;
+      }
+      .NBNF_case_insensitive_char {
+        color: LightGreen;
+      }
+      .NBNF_char {
+        color: LightGreen;
+      }
+      .NBNF_operator {
+        vertical-align: super;
+      }
+      .NBNF_escaped {
+        color: Aqua;
+      }
+    </style>
+    <style>
+      html {
+        line-height: 1.5;
+        font-family: Georgia, serif;
+        font-size: 20px;
+        color: #1a1a1a;
+        background-color: #fdfdfd;
+      }
+      body {
+        margin: 0 auto;
+        max-width: 36em;
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        hyphens: auto;
+        word-wrap: break-word;
+        text-rendering: optimizeLegibility;
+        font-kerning: normal;
+      }
+      @media (max-width: 600px) {
+        body {
+          font-size: 0.9em;
+          padding: 1em;
+        }
+      }
+      p {
+        margin: 1em 0;
+      }
+      a {
+        text-decoration: none;
+        color: DarkCyan;
+      }
+      img {
+        max-width: 100%;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        margin-top: 1.4em;
+      }
+      h5, h6 {
+        font-size: 1em;
+        font-style: italic;
+      }
+      h6 {
+        font-weight: normal;
+      }
+      ol, ul {
+        padding-left: 1.7em;
+        margin-top: 1em;
+      }
+      li > ol, li > ul {
+        margin-top: 0;
+      }
+      blockquote {
+        margin: 1em 0 1em 1.7em;
+        padding-left: 1em;
+        border-left: 2px solid #e6e6e6;
+        color: #606060;
+      }
+      code {
+        font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+        font-size: 85%;
+        margin: 0;
+        background-color: LightGrey;
+        padding: 2px;
+      }
+      pre {
+        margin: 1em 0;
+        overflow: auto;
+      }
+      pre code {
+        padding: 0;
+        overflow: visible;
+      }
+      .sourceCode {
+       background-color: transparent;
+       overflow: visible;
+      }
+      hr {
+        background-color: #1a1a1a;
+        border: none;
+        height: 1px;
+        margin: 1em 0;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        overflow-x: auto;
+        display: block;
+        font-variant-numeric: lining-nums tabular-nums;
+      }
+      table caption {
+        margin-bottom: 0.75em;
+      }
+      tbody {
+        margin-top: 0.5em;
+      }
+      th {
+        border: solid 1px;
+        padding: 0.25em 0.5em 0.25em 0.5em;
+      }
+      td {
+        border: solid 1px;
+        padding: 0.125em 0.5em 0.25em 0.5em;
+      }
+      header {
+        margin-bottom: 4em;
+        text-align: center;
+      }
+      #TOC ul {
+        padding: 20px;
+        border: solid 1px;
+      }
+      #TOC ul ul {
+        border: none;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      #TOC ul ul ul {
+        border: none;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      #TOC ul ul ul ul {
+        border: none;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      #TOC li {
+        list-style: none;
+      }
+      #TOC a:not(:hover) {
+        text-decoration: none;
+      }
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+      ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    </style>
+  </head>
+  <body>
+    <header id="title-block-header">
+      <h1 class="title">$title$</h1>
+      <p class="author">$author$</p>
+      <p class="date">$date$</p>
+    </header>
+    <nav id="TOC" role="doc-toc">
+      $toc$
+    </nav>
+    <div id="syntax-ref">
+      $body$
+    </div>
+  </body>
+</html>

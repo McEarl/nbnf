@@ -1,0 +1,58 @@
+name:                nbnf
+version:             0.1.0.0
+github:              "McEarl/nbnf"
+license:             MIT
+author:              "Marcel Schütz"
+maintainer:          ""
+copyright:           "2021 Marcel Schütz"
+
+extra-source-files:
+- README.md
+
+# Metadata used when publishing your package
+# synopsis:            Converting Markdown files containing grammar rules in NBNF, a variant of BNF
+# category:            Grammar
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/McEarl/nbnf#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+  dependencies:
+  - containers      # used for `Map`
+  - parsec
+  - hxt             # used for `hexStringToInt`
+  - text
+  - xml-conduit
+  - html
+
+executables:
+  nbnf-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - nbnf
+    - text
+    - pandoc
+    - blaze-html
+    - markdown
+
+tests:
+  forthel-syntax-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - nbnf
