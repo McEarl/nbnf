@@ -1,6 +1,12 @@
+---
+title: BSD 2-Clause "Simplified" License
+spdx-id: BSD-2-Clause
+---
+
+
 # BSD 2-Clause License
 
-_Copyright © 2021, Marcel Schütz_  
+_Copyright (c) 2021, Marcel Schütz_  
 _All rights reserved._
 
 Redistribution and use in source and binary forms, with or without
