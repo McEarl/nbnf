@@ -1,9 +1,3 @@
----
-title: BSD 2-Clause "Simplified" License
-spdx-id: BSD-2-Clause
----
-
-
 # BSD 2-Clause License
 
 _Copyright (c) 2021, Marcel Schütz_  
