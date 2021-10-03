@@ -1,7 +1,7 @@
 -- |
 -- Module      : Import.Parse
 -- Copyright   : (c) 2021 Marcel Schütz
--- License     : MIT
+-- License     : BSD 2-clause
 --
 -- Parsing NBNF rules
 

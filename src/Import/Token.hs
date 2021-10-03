@@ -1,7 +1,7 @@
 -- |
 -- Module      : Import.Token
 -- Copyright   : (c) 2021 Marcel Schütz
--- License     : MIT
+-- License     : BSD 2-clause
 --
 -- Tokenizing Markdown documents which contain NBNF code
 

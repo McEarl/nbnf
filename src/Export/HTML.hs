@@ -1,7 +1,7 @@
 -- |
 -- Module      : Export.HTML
 -- Copyright   : (c) 2021 Marcel Schütz
--- License     : MIT
+-- License     : BSD 2-clause
 --
 -- Exporting NBNF to HTML
 

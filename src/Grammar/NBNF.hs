@@ -1,7 +1,7 @@
 -- |
 -- Module      : Grammar.NBNF
 -- Copyright   : (c) 2021 Marcel Schütz
--- License     : MIT
+-- License     : BSD 2-clause
 --
 -- A variation of BNF called NBNF (eNriched BNF) which provides some syntactic
 -- sugar for BNF

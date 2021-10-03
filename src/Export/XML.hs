@@ -1,7 +1,7 @@
 -- |
 -- Module      : Export.XML
 -- Copyright   : (c) 2021 Marcel Schütz
--- License     : MIT
+-- License     : BSD 2-clause
 --
 -- Exporting NBNF to XML
 
