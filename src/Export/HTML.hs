@@ -198,7 +198,7 @@ exprToElement (NBNF.Sequence expressions) = HtmlTag tag attributes content
   where
     tag = "span"
     attributes = [HtmlAttr "class" "NBNF_sequence"]
-    content = Html $ intersperse (HtmlString " ") (concatMap parenExprToElement expressions)
+    content = Html $ intersperse (HtmlString " ") (concatMap parenExprToElements expressions)
 
 -- Option
 exprToElement (NBNF.Option expression) = HtmlTag tag attributes content
@@ -333,13 +333,13 @@ operatorToElement operator = HtmlTag tag attributes content
       NBNF.Plus -> Html [HtmlString "+"]
 
 -- Enclose a choice expression in parentheses
-parenExprsToElements :: NBNF.Expression -> [HtmlElement]
-parenExprsToElements expr@(NBNF.Choice expressions) = [
+parenExprToElements :: NBNF.Expression -> [HtmlElement]
+parenExprToElements expr@(NBNF.Choice expressions) = [
     HtmlString "( ",
     exprToElement expr,
     HtmlString " )"
   ]
-parenExprToElement expr = [exprToElement expr]
+parenExprToElements expr = [exprToElement expr]
 
 escapeChar :: Char -> HtmlElement
 escapeChar c = if isPrint c && not (isSpace c) && c `notElem` ['\"', '\'', '\\']
