@@ -1,4 +1,4 @@
-# NBNF
+# NBNF Tools
 
 Converting NBNF grammars embedded in Markdown documents to other formats
 
