@@ -48,7 +48,7 @@ To generate an executable from this package, first make sure that the tools
 commands in any directory of your choice:
 
 ```sh
-git clone https://github.com/McEarl/nbnf.git
+git clone https://github.com/McEarl/nbnf-tools.git
 cd nbnf
 stack build
 ```
