@@ -23,7 +23,8 @@ source-repository head
 library
   exposed-modules:
       Export.HTML
-      Export.PlainText
+      Export.LOG
+      Export.TXT
       Export.XML
       Grammar.NBNF
       Import.Parse
