@@ -144,30 +144,19 @@ singletonChoice :: Parser NBNF.Expression
 singletonChoice = nbnfSequence
 
 nbnfSequence :: Parser NBNF.Expression
-nbnfSequence = try properSequence <|> singletonSequence
+nbnfSequence = try properSequence <|> singleExpression
 
 properSequence :: Parser NBNF.Expression
 properSequence = do
-  expr1 <- validExpression
+  expr1 <- singleExpression
   optional horizontalSpaces
   expr2 <- nbnfSequence
   return $ case expr2 of
     NBNF.Sequence exprs -> NBNF.Sequence (expr1 : exprs)
     _ -> NBNF.Sequence [expr1, expr2]
-  where
-    validExpression = choice [
-        try nbnfOption,
-        try nbnfRepetition,
-        try nbnfGrouping,
-        try nbnfTerminal,
-        try nbnfStringException,
-        try nbnfCharException,
-        try nbnfAlphabet,
-        try nbnfNonTerminal
-      ]
 
-singletonSequence :: Parser NBNF.Expression
-singletonSequence = choice [
+singleExpression :: Parser NBNF.Expression
+singleExpression = choice [
     try nbnfOption,
     try nbnfRepetition,
     try nbnfGrouping,
