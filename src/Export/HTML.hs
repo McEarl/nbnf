@@ -429,4 +429,4 @@ leftBracket :: String
 leftBracket = "&#x005B;"
 
 rightBracket :: String
-rightBracket = "&#x005BD;"
+rightBracket = "&#x005D;"
