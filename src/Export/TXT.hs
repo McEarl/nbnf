@@ -1,5 +1,5 @@
 -- |
--- Module      : Export.grammarToPlainText
+-- Module      : Export.TXT
 -- Copyright   : (c) 2021 Marcel Schütz
 -- License     : BSD 2-clause
 --
@@ -8,7 +8,7 @@
 
 {-# LANGUAGE OverloadedStrings #-}
 
-module Export.PlainText (
+module Export.TXT (
   grammarToText
 ) where
 
