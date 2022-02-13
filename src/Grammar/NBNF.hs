@@ -35,6 +35,7 @@ data Rule =
         lhs :: Identifier,
         chars :: [CharSelection]
       }
+  deriving (Eq)
 
 type Identifier = String
 
@@ -49,26 +50,29 @@ data Expression =
   | Alphabet Identifier                                 -- ^ e.g. @<<Alphabet>>@
   | CharException Identifier [TypedChar]                -- ^ e.g. @<<Alphabet>> \ {"a", "b", 'c'}@
   | StringException Identifier Operator [TypedString]   -- ^ e.g. @<<Alphabet>>+ \ {"foo", "bar", 'baz'}@
+  deriving (Eq)
 
 
 -- | A character together with a string type
-data TypedChar = TypedChar StringType Char
+data TypedChar = TypedChar StringType Char deriving (Eq)
 
 -- | A string together with a string type
-data TypedString = TypedString StringType String
+data TypedString = TypedString StringType String deriving (Eq)
 
 -- | Types of strings
-data StringType = CaseSensitive | CaseInsensitive
+data StringType = CaseSensitive | CaseInsensitive deriving (Eq)
 
 -- | Operators to build a language from an alphabet
 data Operator =
     Star    -- ^ All words over a given alphabet
   | Plus    -- ^ All non-empty words over a given alphabet
+  deriving (Eq)
 
 -- | All characters from the first character to the second in the Unicode rable
 data CharSelection =
     CharChoice Char Char    -- ^ e.g. @"a" | ... | "z"@
   | SingleChar Char     -- ^ e.g. @"a"@ or @"\U+004A;"@
+  deriving (Eq)
 
 
 {-
