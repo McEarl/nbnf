@@ -255,10 +255,16 @@ nbnfOperator = do
     _ -> undefined
 
 nbnfStringList :: Parser [NBNF.TypedString]
-nbnfStringList = sepBy nbnfTypedString listSeparator
+nbnfStringList = do
+  fst <- nbnfTypedString
+  rest <- many (try (listSeparator >> nbnfTypedString))
+  return $ fst : rest
 
 nbnfCharList :: Parser [NBNF.TypedChar]
-nbnfCharList = sepBy nbnfTypedChar listSeparator
+nbnfCharList = do
+  fst <- nbnfTypedChar
+  rest <- many (try (listSeparator >> nbnfTypedChar))
+  return $ fst : rest
 
 
 -- * Typed strings/characters
