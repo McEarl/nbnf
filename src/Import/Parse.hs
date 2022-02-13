@@ -39,6 +39,7 @@ nonTerminalRule = do
   optional horizontalSpaces
   rhs <- nonTerminalRhs
   optional spaces
+  eof
   return $ NBNF.NonTerminalRule lhs rhs
 
 nonTerminalLhs :: Parser NBNF.Identifier
@@ -78,6 +79,7 @@ alphabetRule = do
   optional horizontalSpaces
   rhs <- alphabetRhs
   optional spaces
+  eof
   return $ NBNF.AlphabetRule lhs rhs
 
 alphabetLhs :: Parser NBNF.Identifier
