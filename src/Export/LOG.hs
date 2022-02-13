@@ -89,11 +89,11 @@ exprToText n (NBNF.Terminal str) = indent n <> "Terminal: [\n" <>
 exprToText n (NBNF.NonTerminal identifier) = indent n <> "NonTerminal: \"" <> Text.pack identifier <> "\""
 exprToText n (NBNF.Alphabet identifier) = indent n <> "Alphabet: \"" <> Text.pack identifier <> "\""
 exprToText n (NBNF.CharException alphabet chars) = indent n <> "CharException: [\n" <>
-  indent (n + 1) <> "Alphabet: \n" <> Text.pack alphabet <> ",\n" <>
+  indent (n + 1) <> "Alphabet: \n" <> indent (n + 2) <> Text.pack alphabet <> ",\n" <>
   charListToText (n + 1) chars <> "\n" <>
   indent n <> "]"
 exprToText n (NBNF.StringException alphabet operator strings) = indent n <> "StringException: [\n" <>
-  indent (n + 1) <> "Alphabet: \n" <> Text.pack alphabet <> ",\n" <>
+  indent (n + 1) <> "Alphabet: \n" <> indent (n + 2) <> Text.pack alphabet <> ",\n" <>
   operatorToText (n + 1) operator <> ",\n" <>
   stringListToText (n + 1) strings <> "\n" <>
   indent n <> "]"
