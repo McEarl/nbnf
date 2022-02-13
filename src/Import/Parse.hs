@@ -21,12 +21,8 @@ import Text.XML.HXT.DOM.Util (hexStringToInt)
 
 
 -- | Parse a token containing an NBNF rule
-parseNbnfToken :: Token -> NBNF.Rule
-parseNbnfToken token = case parse nbnfRule "" (content token) of
-  Left err -> error $ "While parsing the NBNF code in lines "
-    ++ show (pos token) ++ ", namely\n\n" ++ show (content token) ++ "\n\n"
-    ++ "the following error occured:\n\n" ++ show err
-  Right result -> result
+parseNbnfToken :: Token -> Either ParseError NBNF.Rule
+parseNbnfToken token = parse nbnfRule "" (content token)
 
 nbnfRule :: Parser NBNF.Rule
 nbnfRule = try alphabetRule <|> nonTerminalRule

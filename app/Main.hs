@@ -20,14 +20,18 @@ import qualified Data.Text as Strict
 import qualified Data.Text.IO as Strict
 
 import Text.Pandoc
+import Text.Pandoc.Parsing
 
+import qualified Grammar.NBNF as NBNF
 
 import Import.Token
 import Import.Parse
+
 import Export.XML
 import Export.TXT
 import Export.LOG
 import Export.HTML
+
 
 
 data Flag =
@@ -105,11 +109,19 @@ htmlTemplatePath :: HtmlMode -> FilePath
 htmlTemplatePath StandAlone = "html/template_standalone.html"
 htmlTemplatePath Jekyll = "html/template_jekyll.html"
 
+-- Intended to be applied only to tokens of type `NbnfCode`
+parseNbnfToken' :: Token -> NBNF.Rule
+parseNbnfToken' token = case parseNbnfToken token of
+  Left err -> error $ "While parsing the NBNF code in lines "
+      ++ show (pos token) ++ ", namely\n\n" ++ show (content token) ++ "\n\n"
+      ++ "the following error occured:\n\n" ++ show err
+  Right nbnfRule -> nbnfRule
+
 -- Convert a token to Markdown text (in case the token is an NBNF code token
 -- it is converted to HTML)
 tokenToMarkdown :: Token -> Strict.Text
-tokenToMarkdown token@(Token tokType _ content) = case tokType of
-  NbnfCode -> "\n" <> ruleToHtmlText (parseNbnfToken token) <> "\n"
+tokenToMarkdown token@(Token tokType pos content) = case tokType of
+  NbnfCode -> "\n" <> ruleToHtmlText (parseNbnfToken' token) <> "\n"
   Misc -> Strict.pack content
 
 -- Convert a Markdown text to HTML and insert it in an HTML template
@@ -170,15 +182,15 @@ main = do
       newContent <- case outFormat of
                       TXT -> do
                         let nbnfTokens = filter isNbnfToken tokens
-                        let nbnfGrammar = map parseNbnfToken nbnfTokens
+                        let nbnfGrammar = map parseNbnfToken' nbnfTokens
                         return $ grammarToText nbnfGrammar
                       LOG -> do
                         let nbnfTokens = filter isNbnfToken tokens
-                        let nbnfGrammar = map parseNbnfToken nbnfTokens
+                        let nbnfGrammar = map parseNbnfToken' nbnfTokens
                         return $ grammarToLog nbnfGrammar
                       XML -> do
                         let nbnfTokens = filter isNbnfToken tokens
-                        let nbnfGrammar = map parseNbnfToken nbnfTokens
+                        let nbnfGrammar = map parseNbnfToken' nbnfTokens
                         return $ grammarToXmlText nbnfGrammar
                       HTML -> do
                         -- Get the HTML mode
