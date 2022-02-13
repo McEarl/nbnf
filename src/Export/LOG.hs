@@ -9,7 +9,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Export.LOG (
-  grammarToLog
+  grammarToLog,
+  ruleToLog
 ) where
 
 import Data.Text.Lazy (Text)
@@ -23,11 +24,15 @@ import Import.Token
 import Import.Parse
 
 
--- | Convert an NBNF grammar to an XML text
+-- | Print the internal structure of a given grammar (for debugging)
 grammarToLog :: NBNF.Grammar -> Text
 grammarToLog [] = ""
 grammarToLog [rule] = ruleToText 0 rule
 grammarToLog (rule : rest) = ruleToText 0 rule <> "\n" <> grammarToLog rest
+
+-- | Print the internal structure of a given rule (for testing)
+ruleToLog :: NBNF.Rule -> String
+ruleToLog = Text.unpack . ruleToText 0
 
 -- (The 1st parameter is the initial indentation level)
 ruleToText :: Int -> NBNF.Rule -> Text
