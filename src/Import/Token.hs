@@ -11,6 +11,7 @@ module Import.Token (
   TokenType(..),
   SourceRange(..),
   Int,
+  newNBNFTestToken,
   isNbnfToken,
   tokenize
 ) where
@@ -18,6 +19,7 @@ module Import.Token (
 
 import Text.Parsec
 import Text.ParserCombinators.Parsec.Prim (Parser)
+import Text.Parsec.Pos
 
 
 data Token = Token {
@@ -30,6 +32,11 @@ data TokenType = NbnfCode | Misc
 
 data SourceRange = SourceRange SourcePos SourcePos
 
+emptyRange :: SourceRange
+emptyRange = SourceRange (newPos "" 1 1) (newPos "" 1 1)
+
+newNBNFTestToken :: String -> Token
+newNBNFTestToken string = Token NbnfCode emptyRange string
 
 instance Show Token where
   show (Token tokType pos content) = show tokType ++ " [" ++ show pos ++ "]: " ++
