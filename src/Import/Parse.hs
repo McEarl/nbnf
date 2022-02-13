@@ -244,9 +244,7 @@ nbnfIdentifier :: Parser NBNF.Identifier
 nbnfIdentifier = many1 (letter <|> digit <|> oneOf [' ', '_' , '-'])
 
 nbnfTerminal :: Parser NBNF.Expression
-nbnfTerminal = do
-  string <- nbnfTypedString
-  return $ NBNF.Terminal string
+nbnfTerminal = NBNF.Terminal <$> nbnfTypedString
 
 nbnfOperator :: Parser NBNF.Operator
 nbnfOperator = do
@@ -254,6 +252,7 @@ nbnfOperator = do
   return $ case operator of
     '*' -> NBNF.Star
     '+' -> NBNF.Plus
+    _ -> undefined
 
 nbnfStringList :: Parser [NBNF.TypedString]
 nbnfStringList = sepBy nbnfTypedString listSeparator
