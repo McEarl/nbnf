@@ -362,6 +362,7 @@ escapeChar c = if isPrint c && not (isSpace c) && c `notElem` ['\"', '\'', '\\']
     htmlEscape ']' = rightBracket
     htmlEscape '\\' = backslash
     htmlEscape '|' = bar
+    htmlEscape '$' = dollar
     htmlEscape c = [c]
 
 charSelectionToElement :: NBNF.CharSelection -> HtmlElement
@@ -430,3 +431,6 @@ leftBracket = "&#x005B;"
 
 rightBracket :: String
 rightBracket = "&#x005D;"
+
+dollar :: String
+dollar = "&#x0024;"
