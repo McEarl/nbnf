@@ -20,7 +20,7 @@ can be found in the file [_docs/nbnf-syntax.md_](./docs/nbnf-syntax.md).
 
 This package provides a tool called `nbnf-exe` which can be used to convert
 [Pandoc Markdown][3] (in the following just called _Markdown_) files containing
-NBNF rules to the following file formats:
+NBNF rules to the following formats:
 
   * Plain text
   * XML
@@ -28,28 +28,26 @@ NBNF rules to the following file formats:
 
 When converted to plain text or XML the resulting file will only contain the
 NBNF rules of the Markdown file, whereas when converting to HTML it will also
-contains all additional content of the Markdown file like headings, tables,
-sourrounding text and so on.
+contain any sourrounding text.
 
 Thus for `nbnf-exe` to be able to distinguish between NBNF rules and other
 content of the Markdown file, it is necessary to enclose every single rule
 within ` ```nbnf` and ` ``` `, e.g.
 
+````
 ```nbnf
 <foo> = <bar>
       | "baz"
 ```
+````
 
 
-## Setup
+## Build
 
-To generate an executable from this package, first make sure that the tools
-[git][4] and [stack][5] are installed on your system. Then execute the following
-commands in any directory of your choice:
+To build the executable `nbnf-exe`, run the following command from within the
+root directory of this repository:
 
-```sh
-git clone https://github.com/McEarl/nbnf-tools.git
-cd nbnf
+```
 stack build
 ```
 
@@ -59,7 +57,7 @@ stack build
 To convert a Markdown document which contains NBNF rules to plain text, XML or
 HTML run the following command:
 
-```sh
+```
 stack exec nbnf-exe -- -i INFILE -o OUTFILE [-h (standalone|jekyll)]
 ```
 
@@ -67,16 +65,20 @@ The `-i` option specifies an input file. If several instances of it occur, the
 specified files will be concatenated in the order they appear and treated as one
 big file.
 
-The option `-o` specifies the output file and its file format which is derived
-from its file name extension. Supported are `.txt` (plain text), `.html`
-(HTML, either a stand-alone document or one adapted to Jekyll), `.xml` (XML) and
-`.log` (for debugging only).  
+The option `-o` specifies the output file. Its file name extension determines
+outptu format. Supported are:
+
+  * `.txt` (plain text)
+  * `.html` (HTML)
+  * `.xml` (XML)
+  * `.log` (debug log)
+
 **Warning:** If a file with the same name as the output file already exists it
 will be overridden without further inquiry!
 
-If the output format is HTML, you must specify whether the output file should be
-a stand-alone document (via `-h standalone`) or a HTML file which is adapted to
-be used with Jekyll (via `-h jekyll`).
+If the output format is HTML, it must be specify whether the output file should
+be a stand-alone document (via `-h standalone`) or a HTML file which is adapted
+to be used with Jekyll (via `-h jekyll`).
 
 Moreover, the option `--help` prints a little help message.
 
